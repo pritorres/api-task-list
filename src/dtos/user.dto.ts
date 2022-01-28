@@ -24,7 +24,8 @@ export class CreateUserDto {
   password: string;
 
   @IsDate()
-  fecha_nacimiento: Date;
+  @IsNotEmpty()
+  fecha_nacimiento: string;
 }
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {}

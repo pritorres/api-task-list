@@ -11,6 +11,10 @@ export class UserController {
   async getAll(): Promise<User[]> {
     return await this.userService.getAll();
   }
+  @Get(':id')
+  async getOne(id: number): Promise<User> {
+    return await this.userService.getOne(id);
+  }
 
   @Post()
   async create(@Body() body: CreateUserDto): Promise<User> {

@@ -1,5 +1,6 @@
 import { Body, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CreateCategoryDto } from 'src/dtos/category.dto';
 import { Category } from 'src/entities/category.entity';
 import { Repository } from 'typeorm';
 
@@ -11,16 +12,16 @@ export class CategoryService {
   ) {}
 
   async getAll(): Promise<Category[]> {
-    const user = this.categoryRepo.find();
-    return await user;
+    const category = this.categoryRepo.find();
+    return await category;
   }
 
   async getOne(id: number): Promise<Category> {
     return await this.categoryRepo.findOne(id);
   }
 
-  async create(): Promise<Category> {
-    return await this.categoryRepo.create();
+  async create(body: CreateCategoryDto): Promise<Category> {
+    return await this.categoryRepo.save(body);
   }
 
   async update(id: number): Promise<Category> {
