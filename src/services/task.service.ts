@@ -24,14 +24,15 @@ export class TaskService {
 
   async getUserTasks(id: number): Promise<Task[]> {
     return this.taskRepo
-      .createQueryBuilder()
+      .createQueryBuilder('task')
       .select('task.id', 'id')
-      .addSelect('category.name', 'category_id')
-      .addSelect('user.name', 'user_id')
-      .from(Task, 'task')
-      .leftJoin(Category, 'category', 'category.id = task.category_id')
-      .leftJoin(User, 'user', 'user.id = task.user_id')
-      .getMany();
+      .addSelect('category.name', 'category')
+      .addSelect('user.name', 'user')
+      .innerJoin(Category, 'category', 'category.id = task.category_id')
+      .innerJoin(User, 'user', 'user.id = task.user_id')
+      .where('task.user_id = :id', { id })
+      .printSql()
+      .getRawMany();
   }
 
   async create(body: CreateTaskDto): Promise<Task> {
