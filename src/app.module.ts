@@ -23,8 +23,8 @@ import { AuthController } from './auth/controllers/auth.controller';
       autoLoadEntities: true, // carga las entidades en el startup
     }),
     TaskModule,
-    UserModule,
     CategoryModule,
+    UserModule,
     AuthModule,
   ],
   controllers: [AppController, AuthController],
