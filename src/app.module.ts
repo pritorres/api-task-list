@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TaskModule } from './modules/task.module';
-import { UserModule } from './modules/user.module';
-import { CategoryModule } from './modules/category.module';
+import { TaskModule } from '././tasks/task.module';
+import { UserModule } from './user/user.module';
+import { CategoryModule } from './products/category.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/modules/auth.module';
 import { AuthController } from './auth/controllers/auth.controller';
+import { UserController } from './user/controllers/user.controller';
 
 @Module({
   imports: [
@@ -27,7 +28,7 @@ import { AuthController } from './auth/controllers/auth.controller';
     UserModule,
     AuthModule,
   ],
-  controllers: [AppController, AuthController],
+  controllers: [AppController, AuthController, UserController],
   providers: [AppService],
 })
 export class AppModule {}

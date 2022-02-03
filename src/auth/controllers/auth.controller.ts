@@ -1,10 +1,10 @@
 import { Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
-import { AuthGuard } from '@nestjs/passport';
+import { LocalAuthGuard } from './../guards/local.guard';
 
 @Controller('auth')
 export class AuthController {
-  @UseGuards(AuthGuard('local'))
+  @UseGuards(LocalAuthGuard)
   @Post('/login')
   login(@Req() req: Request) {
     return req.user;
