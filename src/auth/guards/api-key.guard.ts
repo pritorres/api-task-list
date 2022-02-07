@@ -21,7 +21,7 @@ export class ApiKeyGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    const isPublic = this.reflector.get('isPublic', context.getHandler());
+    const isPublic = this.reflector.get('isPublic', context.getHandler()); // o podemos crear nuestro propio decorador (para no tener errores en)
     if (isPublic) {
       return true;
     }

@@ -1,6 +1,7 @@
 import { Body, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { ConfigService } from '@nestjs/config';
 
 import { User } from '../entities/user.entity';
 import { CreateUserDto } from '../dto/user.dto';
@@ -11,6 +12,7 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly userRepo: Repository<User>,
+    private readonly configService: ConfigService,
   ) {}
 
   async getAll(): Promise<User[]> {
@@ -22,8 +24,8 @@ export class UserService {
     return await this.userRepo.findOne(id);
   }
 
-  async findEmail(email: string): Promise<User> {
-    return await this.userRepo.findOne({ where: { email } }); // busca al primer email que cohincida con este email
+  async getUserName(name: string): Promise<User> {
+    return this.userRepo.findOne({ where: { name } });
   }
 
   async create(body: CreateUserDto): Promise<User> {

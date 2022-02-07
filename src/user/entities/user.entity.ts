@@ -9,9 +9,6 @@ export class User {
   @Column()
   name: string;
 
-  @Column()
-  email: string;
-
   //@Exclude() // en respuesta expluya la password
   @Column({ type: 'varchar', length: 70, nullable: true })
   password: string;

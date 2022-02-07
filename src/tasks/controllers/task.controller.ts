@@ -13,7 +13,7 @@ export class TaskController {
     return await this.taskService.getAll();
   }
 
-  @Get('/user/:id')
+  @Get(':id/task')
   async getUserTask(@Param('id') id: number): Promise<Task[]> {
     return await this.taskService.getUserTasks(id);
   }

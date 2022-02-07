@@ -5,7 +5,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Category } from './../../products/entities/category.entity';
+import { Category } from '../../categories/entities/category.entity';
 import { User } from './../../user/entities/user.entity';
 
 @Entity('task')

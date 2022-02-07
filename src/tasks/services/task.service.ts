@@ -1,9 +1,10 @@
 import { Body, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+
 import { CreateTaskDto } from './../dtos/task.dto';
 import { Task } from './../entities/task.entity';
-import { Repository } from 'typeorm';
-import { Category } from './../../products/entities/category.entity';
+import { Category } from '../../categories/entities/category.entity';
 import { User } from './../../user/entities/user.entity';
 
 @Injectable()
