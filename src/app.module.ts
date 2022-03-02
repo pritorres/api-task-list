@@ -3,6 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { GraphQLModule } from '@nestjs/graphql';
+import {
+  ApolloFederationDriver,
+  ApolloFederationDriverConfig,
+} from '@nestjs/apollo';
 
 import { TaskModule } from '././tasks/task.module';
 import { UserModule } from './user/user.module';
@@ -13,6 +18,10 @@ import config from './config';
 
 @Module({
   imports: [
+    GraphQLModule.forRoot<ApolloFederationDriverConfig>({
+      driver: ApolloFederationDriver,
+      typePaths: ['./**/*.graphql'],
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -21,8 +30,8 @@ import config from './config';
       password: 'panconqueso1',
       database: 'task-list',
       entities: ['entities/*.ts'],
-      synchronize: true, // actualiza la db con las entidades del proyecto en cada start-up
-      dropSchema: true, // elimina el schema en cada start-up
+      /* synchronize: true, // actualiza la db con las entidades del proyecto en cada start-up
+      dropSchema: true, */ // elimina el schema en cada start-up
       autoLoadEntities: true, // carga las entidades en el startup
     }),
     TaskModule,
